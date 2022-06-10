@@ -17,6 +17,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val circularProgressBar = findViewById<CircularProgressBar>(R.id.circularProgressBar)
+        val circularProgressBarAuto = findViewById<CircularProgressBar>(R.id.circularProgressBarAuto)
+
+        circularProgressBarAuto.setProgressWithAnimation(0f, 100) // =1s
+        circularProgressBarAuto.autoUpdateProgress(1f, 1000, true)
+        circularProgressBarAuto.onProgressChangeListener = { progress ->
+            if (progress == 20f){
+                circularProgressBarAuto.cancelAutoUpdateProgress()
+            }
+        }
 
         // Set Init progress with animation
         circularProgressBar.setProgressWithAnimation(65f, 1000) // =1s
